@@ -79,8 +79,12 @@
 ;;;###autoload
 (define-derived-mode swig-mode c++-mode "Swig"
   "Major mode for Asymptote."
+  (electric-indent-mode -1)
   (local-set-key "{" 'swig-insert-paren)
-  (setq c++-font-lock-keywords-3
+  (local-set-key (kbd "<return>") 'newline)
+  (set (make-local-variable 'indent-line-function) 'tab-to-tab-stop)
+  (setq tab-always-indent nil
+        c++-font-lock-keywords-3
         (append c++-font-lock-keywords-3
                 swig-font-lock-keywords)))
 
